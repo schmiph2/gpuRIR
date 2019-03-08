@@ -7,9 +7,10 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update && apt-get -y install \
 			python3-tk \
 	&& rm -rf /var/lib/apt/lists/* #cleans up apt cache -> reduces image size
-RUN apt-get -y install python3-dev
 RUN apt-get update && apt-get install -y git
 RUN apt-get -y install htop
+RUN apt-get -y install python3.6
+RUN apt-get -y install python3-pip
 RUN pip3 install --upgrade -I setuptools
 RUN pip3 install \
   jupyter \
@@ -27,10 +28,6 @@ RUN pip3 install \
   spectrum
 RUN pip3 install pysptk  
 RUN pip3 install samplerate
-RUN add-apt-repository ppa:jonathonf/ffmpeg-4
-RUN apt-get update
-RUN apt-get -y install ffmpeg && apt-get -y install libavcodec-extra 
-RUN apt-get -y install sox
 
 RUN pip3 install cmake
 RUN pip3 install https://github.com/DavidDiazGuerra/gpuRIR/zipball/master
